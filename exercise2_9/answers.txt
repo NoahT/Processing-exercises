@@ -1,0 +1,6 @@
+-We will create a paradox with acceleration. Our object will start with a fast acceleration, but get slower when
+it gets closer to our attractor. It will stay at a slow acceleration since it will never launch far outwards again.
+
+-Our attractors will never have objects close to them, but objects far away attracted towards them. When an
+object and an attractor are close, they will behave like the like-poles on a magnet, whereas they will behave
+like the opposite poles on a magnet when far away.
