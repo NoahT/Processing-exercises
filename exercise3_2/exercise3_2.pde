@@ -5,7 +5,7 @@ void setup() {
   size(500, 500);
   frameRate(60);
   
-  gravity = new PVector(0, .098);
+  gravity = new PVector(0, .49);
   
   cannon = new Cannon(); //PVector size, PVector location, PVector velocity, PVector acceleration, color strokeColor, float maxAcceleration, float limitVelocity
   cannon.size = new PVector(10, 10);
@@ -15,7 +15,7 @@ void setup() {
   cannon.strokeColor = color(0);
   cannon.maxAcceleration = 0;
   cannon.limitVelocity = 0; //stay in place]
-  cannon.maxProjectileThrust = 20;
+  cannon.maxProjectileThrust = 150;
 }
 
 void draw() {

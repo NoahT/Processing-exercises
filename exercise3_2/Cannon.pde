@@ -66,15 +66,15 @@ class Cannon extends Mover {
     yThrust = map(random(maxProjectileThrust), 0, maxProjectileThrust, 0, maxProjectileThrust);
   
     Projectile projectile = new Projectile(); //PVector size, PVector location, PVector velocity, PVector acceleration, color strokeColor, float maxAcceleration, float limitVelocity
-    projectile.size = new PVector(4, 4);
+    projectile.size = new PVector(random(10) + 5, random(10) + 5); //i promise i will go back to mapping
     projectile.location = new PVector(super.location.x, super.location.y);
     projectile.velocity = new PVector(0, 0);
     projectile.acceleration = new PVector(0, 0);
     projectile.strokeColor = color(random(255), random(255), random(255));
-    projectile.maxAcceleration = 5;
+    projectile.maxAcceleration = 20;
     projectile.limitVelocity = this.maxProjectileThrust;
     projectile.rotation = radians(random(360));
-    projectile.rotationalVelocity = map(random(1), 0, .2, -2, 2);
+    projectile.rotationalVelocity = map(random(1), 0, 1, -5, 5);
     
     PVector thrust = new PVector(xThrust, -yThrust);
     projectile.applyForce(thrust);

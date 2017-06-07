@@ -23,7 +23,7 @@ class Projectile extends Mover {
   }
   
   void applyRotation() {
-    this.rotation += rotationalVelocity;
+    this.rotation += radians(rotationalVelocity);
   }
   
   void stepAll() {
