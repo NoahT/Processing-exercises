@@ -6,7 +6,7 @@ void setup() {
   
   oscillators = new ArrayList<Oscillator>();
   
-  for(int index = 0; index < 1; index++) {
+  for(int index = 0; index < 5; index++) {
     Oscillator oscillator = new Oscillator();
     oscillators.add(oscillator);
   }
@@ -14,9 +14,11 @@ void setup() {
 }
 
 void draw() {
-  //background(0);
+  background(0);
   for(int index = 0; index < oscillators.size(); index++) {
     oscillators.get(index).oscillate();
+    oscillators.get(index).accelerate();
+    oscillators.get(index).stepPosition();
     oscillators.get(index).sketch();
   }
 }
