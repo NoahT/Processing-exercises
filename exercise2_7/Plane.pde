@@ -30,17 +30,39 @@ class Plane extends Mover {
     return liftForce;
   }
   
+  PVector getPlaneThrust(float thrustMagnitude) {
+    PVector direction = super.velocity.normalize().mult(thrustMagnitude);
+    return direction;
+  }
+  
+  float getRotation() {
+    return atan2(super.velocity.y, super.velocity.x);
+  }
+  
   void applyDrag() {
-    this.applyForce(this.getDragForce()); //f = ma, so a = f / m (bigger mass, smaller accel.)
+    super.applyForce(this.getDragForce()); //f = ma, so a = f / m (bigger mass, smaller accel.)
   }
   
   void applyLift() {
-    this.applyForce(this.getLiftForce());
+    super.applyForce(this.getLiftForce());
   }
   
   void stepAll() {
     this.applyDrag();
     this.applyLift();
     super.stepAll();
+  }
+  
+  void sketch() {
+    noFill();
+    stroke(this.strokeColor);
+    this.stepAll();
+    
+    pushMatrix();
+    translate(this.location.x, this.location.y);
+    rotate(this.getRotation());
+    rectMode(CENTER);
+    rect(0, 0, this.size.x, this.size.y);
+    popMatrix();
   }
 }

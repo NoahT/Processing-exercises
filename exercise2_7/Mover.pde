@@ -113,6 +113,7 @@ class Mover {
     noFill();
     stroke(this.strokeColor);
     this.stepAll();
+    rectMode(CENTER);
     rect(this.location.x, this.location.y, this.size.x, this.size.y);
   }
 }
