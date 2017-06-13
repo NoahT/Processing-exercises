@@ -24,8 +24,15 @@ class Wave {
     this.amplitude = amplitude;
     this.angleVel = angleVel;
     this.xIncrement = xIncrement;
-  };
-
+  }
+  
+  void setAmplitude(float amplitude) {
+    this.amplitude = amplitude;
+  }
+  
+  float getAmplitude() {
+    return this.amplitude;
+  }
   
   void addPoint(float x, float y) {
     this.points.add(new PVector(x, y));

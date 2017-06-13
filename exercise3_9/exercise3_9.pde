@@ -21,7 +21,7 @@ void draw() {
     float y = map(noise(currentTime), 0, 1, 0, height);
     stroke(0);
     fill(0);
-    rect(index, y, 5, 5);
+    rect(index, y, 10, 10);
     currentTime += this.timeInc;
     
     this.time = (currentTime) - ((this.width / this.widthInc) * this.timeInc); //(current time in perlin) - ((number of increments of perlin in scope) * (increment size))
