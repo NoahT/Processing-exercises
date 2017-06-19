@@ -1,10 +1,9 @@
 class Pendulum { //throw your chains across the room and hold on for dear life.
-  PVector origin,
-  endPoint;
+  PVector origin;
   Mover endPointObject;
   float len,
   angle,
-  maxForce; //maximum tension the string can hold
+  tensionForce; //maximum tension the string can hold
   
   Pendulum() {
     this.origin = new PVector(0, 0);
@@ -12,25 +11,25 @@ class Pendulum { //throw your chains across the room and hold on for dear life.
     this.angle = 0;
     this.setEndPoint();
     this.endPointObject = new Mover();
-    this.maxForce = 0;
+    this.tensionForce = 0;
   }
   
-  Pendulum(PVector origin, Mover endPointObject, float len, float maxForce) {
+  Pendulum(PVector origin, Mover endPointObject, float len, float tensionForce) {
     this.origin = origin;
     this.len = len;
     this.angle = 0;
     this.endPointObject = endPointObject;
     this.setEndPoint();
-    this.maxForce = maxForce;
+    this.tensionForce = tensionForce;
   }
   
-  Pendulum(PVector origin, Mover endPointObject, float len, float angle, float maxForce) {
+  Pendulum(PVector origin, Mover endPointObject, float len, float angle, float tensionForce) {
     this.origin = origin;
     this.len = len;
     this.angle = angle;
     this.endPointObject = endPointObject;
     this.setEndPoint();
-    this.maxForce = maxForce;
+    this.tensionForce = tensionForce;
   }
   
   PVector getOrigin() {
@@ -43,7 +42,7 @@ class Pendulum { //throw your chains across the room and hold on for dear life.
   }
   
   PVector getEndPoint() {
-    return this.endPoint;
+    return this.endPointObject.position;
   }
   
   Mover getEndPointObject() {
@@ -54,12 +53,7 @@ class Pendulum { //throw your chains across the room and hold on for dear life.
     float x = this.len * cos(this.angle),
     y = this.len * sin(this.angle);
     
-    if(this.endPoint == null)
-      this.endPoint = new PVector(this.origin.x + x, this.origin.y + y);
-    else
-      this.endPoint = this.origin.add(x, y);
-    println(x + "\t" + y);
-    this.endPointObject.position.set(this.endPoint);
+    this.endPointObject.position.set(this.origin.x + x, this.origin.y + y);
   }
   
   float getLength() {
@@ -80,15 +74,27 @@ class Pendulum { //throw your chains across the room and hold on for dear life.
     this.setEndPoint();
   }
   
-  float getMaxForce() {
-    return this.maxForce;
+  boolean tensionForceExceeded(PVector netObjectForce) {
+    float theta = radians(90) - this.angle,
+    netForcePerpendicular = netObjectForce.mag() * cos(theta);
   }
   
-  void setMaxForce(float maxForce) {
-    this.maxForce = maxForce;
+  float gettensionForce() {
+    return this.tensionForce;
+  }
+  
+  void settensionForce(float tensionForce) {
+    this.tensionForce = tensionForce;
   }
   
   void addPendulumForces() {
+    float theta = radians(90) - this.angle, //measure from vertical to tether
+    tensionForceX = this.tensionForce * sin(theta),
+    tensionForceY = this.tensionForce * cos(theta),
+    
+    
+    PVector netForce = new PVector(0, 0);
+    
   }
   
   void sketch() {
