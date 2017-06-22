@@ -1,109 +1,48 @@
-class Pendulum { //throw your chains across the room and hold on for dear life.
-  PVector origin;
-  Mover endPointObject;
-  float len,
+class Pendulum {
+  PVector location,
+  origin;
+  float radius,
   angle,
-  tensionForce; //maximum tension the string can hold
+  aVelocity,
+  aAcceleration,
+  damping;
   
-  Pendulum() {
-    this.origin = new PVector(0, 0);
-    this.len = 0;
+  Pendulum(PVector origin, float radius) {
+    this.origin = origin;
+    this.radius = radius;
     this.angle = 0;
-    this.setEndPoint();
-    this.endPointObject = new Mover();
-    this.tensionForce = 0;
+    this.aVelocity = 0;
+    this.aAcceleration = 0;
+    this.damping = .999;
+    this.location = new PVector(this.radius * cos(this.angle), this.radius * sin(this.angle));
+    this.location.add(origin);
   }
   
-  Pendulum(PVector origin, Mover endPointObject, float len, float tensionForce) {
-    this.origin = origin;
-    this.len = len;
-    this.angle = 0;
-    this.endPointObject = endPointObject;
-    this.setEndPoint();
-    this.tensionForce = tensionForce;
+  void move() {
+    this.update();
+    this.display();
   }
   
-  Pendulum(PVector origin, Mover endPointObject, float len, float angle, float tensionForce) {
-    this.origin = origin;
-    this.len = len;
-    this.angle = angle;
-    this.endPointObject = endPointObject;
-    this.setEndPoint();
-    this.tensionForce = tensionForce;
-  }
-  
-  PVector getOrigin() {
-    return this.origin;
-  }
-  
-  void setOrigin(PVector origin) {
-    this.origin = origin;
-    this.setEndPoint();
-  }
-  
-  PVector getEndPoint() {
-    return this.endPointObject.position;
-  }
-  
-  Mover getEndPointObject() {
-    return this.endPointObject;
-  }
-  
-  void setEndPoint() { //each new call to a setter that changes an instance variable requests a call to set the endpoint
-    float x = this.len * cos(this.angle),
-    y = this.len * sin(this.angle);
+  void update() {
+    float gravity = .4;
+    this.aAcceleration = (1 * gravity / this.radius) * cos(this.angle);
     
-    this.endPointObject.position.set(this.origin.x + x, this.origin.y + y);
-  }
-  
-  float getLength() {
-    return this.len;
-  }
-  
-  void setLength(float len) {
-    this.len = len;
-    this.setEndPoint();
-  }
-  
-  float getAngle() {
-    return this.angle;
-  }
-  
-  void setAngle(float angle) {
-    this.angle = angle;
-    this.setEndPoint();
-  }
-  
-  boolean tensionForceExceeded(PVector netObjectForce) {
-    float theta = radians(90) - this.angle,
-    netForcePerpendicular = netObjectForce.mag() * cos(theta);
-  }
-  
-  float gettensionForce() {
-    return this.tensionForce;
-  }
-  
-  void settensionForce(float tensionForce) {
-    this.tensionForce = tensionForce;
-  }
-  
-  void addPendulumForces() {
-    float theta = radians(90) - this.angle, //measure from vertical to tether
-    tensionForceX = this.tensionForce * sin(theta),
-    tensionForceY = this.tensionForce * cos(theta),
+    this.aVelocity += this.aAcceleration;
+    this.angle += this.aVelocity;
     
-    
-    PVector netForce = new PVector(0, 0);
-    
+    this.aVelocity *= this.damping;
   }
   
-  void sketch() {
-    noFill();
+  void display() {
+    this.location.set(this.radius * cos(this.angle), this.radius * sin(this.angle));
+    this.location.add(origin);
+    
     stroke(0);
-    line(this.origin.x, this.origin.y, this.endPointObject.position.x, this.endPointObject.position.y);
+    fill(0);
+    
+    line(this.origin.x, this.origin.y, this.location.x, this.location.y);
+    
     rectMode(CENTER);
-    this.endPointObject.sketch();
+    rect(this.location.x, this.location.y, 40, 40);
   }
-  
-  
 }
