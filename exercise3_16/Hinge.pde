@@ -1,15 +1,15 @@
 class Hinge {
   PVector position;
   ArrayList<Spring> springs;
-  float maxForce;
+  float maxForce; //maybe in future when im not lazy
   
-  Hinge() {
+  void Hinge() {
     this.position = new PVector(0, 0);
     this.springs = new ArrayList<Spring>();
     this.maxForce = 0;
   }
   
-  Hinge(PVector position, float maxForce) {
+  void Hinge(PVector position, float maxForce) {
     this.position = position;
     this.springs = new ArrayList<Spring>();
     this.maxForce = maxForce;
@@ -31,4 +31,5 @@ class Hinge {
       }
     }
   }
+  
 }

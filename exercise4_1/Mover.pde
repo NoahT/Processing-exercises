@@ -125,7 +125,7 @@ class Mover {
   }
   
   void sketch() {
-    noFill();
+    fill(0);//noFill();
     stroke(this.strokeColor);
     this.stepAll();
     pushMatrix();
