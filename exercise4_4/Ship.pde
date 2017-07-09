@@ -63,7 +63,7 @@ class Ship extends Mover {
     particle.mass = 10;
     particle.angle = this.rotation;
     particle.angularVelocity = map(random(1), 0, 1, radians(-5), radians(5));
-    particle.lifeTime = (int) map(random(1), 0, 1, 10, 20);
+    particle.lifeTime = (int) map(random(1), 0, 1, 100, 150);
     this.thrustParticles.addParticle(particle);
     
     super.applyForce(thrust);
