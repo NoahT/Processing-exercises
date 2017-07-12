@@ -24,14 +24,14 @@ class BreakableMover extends Mover {
     println(iterations);
     for(int index = 0; index < iterations; index++) {
       Particle particle = new Particle();
-      particle.size = new PVector(this.particleSize, this.particleSize);
+      particle.size = new PVector(sqrt(this.particleSize), sqrt(this.particleSize));
       particle.velocity = new PVector(map(random(1), 0, 1, -10, 10), map(random(1), 0, 1, -10, 10));
       particle.position.set(this.particles.origin);
       particle.strokeColor = color(random(255), random(255), random(255), 255);
       particle.mass = 0;
       particle.angle = 0;
       particle.angularVelocity = map(random(1), 0, 1, -radians(15), radians(15));
-      particle.lifeTime = (int) map(random(1), 0, 1, 150, 200);
+      particle.lifeTime = (int) map(random(1), 0, 1, 450, 500);
       
       this.particles.addParticle(particle);
     }

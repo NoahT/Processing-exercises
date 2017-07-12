@@ -5,7 +5,7 @@ void setup() {
   frameRate(60);
   background(0);
   
-  breakableMover = new BreakableMover(10);
+  breakableMover = new BreakableMover(100);
   breakableMover.size = new PVector(50, 50);
   breakableMover.position = new PVector((width / 2) - (breakableMover.size.x / 2), (height / 2) - (breakableMover.size.y / 2));
   breakableMover.velocity = new PVector(0, 0);
