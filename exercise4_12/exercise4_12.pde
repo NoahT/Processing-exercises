@@ -8,12 +8,9 @@ void setup() {
   background(0);
   
   gravity = new PVector(0, .98);
-  images = new PImage[5];
+  images = new PImage[2];
   images[0] = loadImage("hotdog.png");
-  images[1] = loadImage("hotdog.png");
-  images[2] = loadImage("hotdog.png");
-  images[3] = loadImage("hotdog.png");
-  images[4] = loadImage("hotdog.png");
+  images[1] = loadImage("trollface.png");
   
   particles = new ParticleSystem(new PVector(mouseX, mouseY));
 }
